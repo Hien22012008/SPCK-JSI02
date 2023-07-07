@@ -53,7 +53,7 @@ const Home = () => {
     };
     return (
         <div>
-            <Carousel afterChange={onChange}>
+            {/* <Carousel afterChange={onChange}>
                 <div>
                     <h3 style={contentStyle} class='slide'><img src={Spiderman1} /></h3>
                 </div>
@@ -137,7 +137,7 @@ const Home = () => {
 
                 />
 
-            </div>
+            </div> */}
         </div>
     );
 };

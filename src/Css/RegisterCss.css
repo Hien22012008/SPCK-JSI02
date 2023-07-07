@@ -1,10 +1,9 @@
 .form-register {
-   
-    height: 400px 
+   width: 30%;
 }
 
-.container {
-    width: 300px;
-    padding-left: 38%;
-    padding-top: 50px;
+.container-register {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
 }
