@@ -2,12 +2,13 @@ import '../../Css/StoreCss.css'
 import React from 'react';
 import { Input } from 'antd';
 import { useState, useEffect } from 'react';
-import { Card } from 'antd';
+import { Card, FloatButton } from 'antd';
 
 const { Meta } = Card;
 
 const Store = () => {
-  const { TextArea } = Input;
+  const { Search } = Input;
+
   const onChange = (e) => {
     console.log(e);
   };
@@ -38,153 +39,57 @@ const Store = () => {
 
   return (
     <div>
-      <div class='search-bar'>
-        <Input placeholder="Search" allowClear onChange={onChange} />
+      <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '50px 0' }}>
+        <Search
+          placeholder="input search name game"
+          onSearch={request}
+          style={{
+            width: 300,
+          }}
+        />
       </div>
 
-      <div class='game'>
-        <div class='card'>
-          <div class='card-1'>
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/340/thumbnail.jpg" />}
-            >
-              <Meta title="Game Of Thrones Winter Is Coming"/>
-            </Card>
-
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/347/thumbnail.jpg" />}
-            >
-              <Meta title="Elvenar"/>
-            </Card>
-          </div>
-
-          <div class='card-1'>
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/11/thumbnail.jpg" />}
-            >
-              <Meta title="Neverwinter"/>
-            </Card>
-
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/380/thumbnail.jpg" />}
-            >
-              <Meta title="Dark Orbit Reloaded"/>
-            </Card>
-          </div>
-           
-          <div class='card-1'>
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/515/thumbnail.jpg" />}
-            >
-              <Meta title="Halo Infinite"/>
-            </Card>
-
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/455/thumbnail.jpg" />}
-            >
-              <Meta title="Eternal Fury"/>
-            </Card>
-          </div>
-
-          <div class='card-1'>
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/522/thumbnail.jpg" />}
-            >
-              <Meta title="Flyff Universe"/>
-            </Card>
-
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/511/thumbnail.jpg" />}
-            >
-             <Meta title="Phantasy Star Online 2 New Genesis"/>
-            </Card>
-          </div>
-
-          <div class='card-1'>
-          <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/5/thumbnail.jpg" />}
-            >
-              <Meta title="Crossout"/>
-            </Card>
-
-            <Card
-              hoverable
-              style={{
-                width: 240,
-                height: 350,
-              }}
-              cover={<img alt="example" src="https://www.freetogame.com/g/9/thumbnail.jpg" />}
-            >
-              <Meta title="World of Warships"/>
-            </Card>
-          </div>
-
-          <div class='card-1'>
-
-          </div>
-
-          <div class='card-1'>
-
-          </div>
-        </div>
-
-        <div class='games'>
+      <div class='games'>
+        <div class='content'>
           {
             data?.length > 0 ? data.map((item) => {
               return (
-                <div class='content'>
-                  {item.title}
-                </div>
+                <Card
+                  hoverable
+                  style={{
+                    width: 320,
+                    height: 390,
+                    paddingBottom: 10,
+                    marginBottom: 20
+                  }}
+                  cover={
+                    <img alt={item?.thumbnail} src={item?.thumbnail} />
+                  }
+                  actions={[
+                    <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
+                  ]}
+                >
+                  <Meta
+                    title={item?.title}
+                  />
+                  <div className="card-description"
+                    style={{
+                      height: '70px',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: 'vertical'
+                    }}>
+                    {item?.short_description}
+                  </div>
+                </Card>
               )
             }) : ''
           }
         </div>
       </div>
+      <FloatButton.BackTop visibilityHeight={100} />
     </div>
   );
 };

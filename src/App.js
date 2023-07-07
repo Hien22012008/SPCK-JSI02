@@ -15,9 +15,16 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { useEffect, useState } from 'react';
 import { Button, Radio, Form, Input, message, Col, notification } from 'antd';
+import User from './Component/User/User';
+import About from './Component/About';
 
 function App() {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState({
+    userName: '',
+    email: '',
+    avt: '',
+    uid: ''
+  });
   const [messageApi, contextHolder] = message.useMessage();
   const [api, contextHolderNotification] = notification.useNotification();
 
@@ -52,7 +59,7 @@ function App() {
         return;
       }
       console.log('Logged in user: ', userLogin);
-      setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL });
+      setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL, email: userLogin.email, uid: userLogin.uid });
     });
 
     return () => unregisterAuthObserver();
@@ -68,6 +75,8 @@ function App() {
         <Route path='/login' exact component={() => <Login notificationLogin={notificationLogin} />}></Route>
         <Route path='/store' exact component={() => <Store />}></Route>
         <Route path='/register' exact component={() => <Register notificationLogin={notificationLogin} />}></Route>
+        <Route path='/information-user' exact component={() => <User notificationLogin={notificationLogin} />}></Route>
+        <Route path='/about' exact component={() => <About notificationLogin={notificationLogin} />}></Route>
       </div>
     </Router>
 

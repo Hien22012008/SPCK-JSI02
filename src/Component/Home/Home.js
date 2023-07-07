@@ -53,7 +53,7 @@ const Home = () => {
     };
     return (
         <div>
-            {/* <Carousel afterChange={onChange}>
+            <Carousel afterChange={onChange}>
                 <div>
                     <h3 style={contentStyle} class='slide'><img src={Spiderman1} /></h3>
                 </div>
@@ -71,11 +71,11 @@ const Home = () => {
                 </div>
             </Carousel>
 
-           
+
 
             <div class='game-played-the-most'>
-            <h1>Played the most</h1>
-            
+                <h1>Played the most</h1>
+
                 <Image
                     style={Imgstyle}
                     height={406}
@@ -137,7 +137,7 @@ const Home = () => {
 
                 />
 
-            </div> */}
+            </div>
         </div>
     );
 };

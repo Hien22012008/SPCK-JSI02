@@ -18,7 +18,11 @@
 }
 
 .content {
-    padding-left: 20px
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px;
 }
 
 .card {
