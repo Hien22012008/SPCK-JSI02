@@ -34,8 +34,8 @@ const Store = () => {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      setData(result.slice(10, 30))
-      console.log(result.slice(10, 30));
+      setData(result.slice(0, 40))
+      console.log(result.slice(0, 40));
     } catch (error) {
       console.error(error);
     }

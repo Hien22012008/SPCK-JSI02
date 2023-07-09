@@ -18,6 +18,7 @@ import { Button, Radio, Form, Input, message, Col, notification } from 'antd';
 import User from './Component/User/User';
 import About from './Component/About';
 import Detail from './Component/Detail/Detail';
+import Checkpoint2 from './Component/Checkpoint2/Checkpoint2';
 
 function App() {
   const [user, setUser] = useState({
@@ -79,8 +80,9 @@ function App() {
         <Route path='/information-user' exact component={() => <User notificationLogin={notificationLogin} />}></Route>
         <Route path='/about' exact component={() => <About notificationLogin={notificationLogin} />}></Route>
         <Route path='/game/:id' exact component={(match) =>  <Detail match={match} />}  ></Route>
+        <Route path='/checkpoint' exact component={() =>  <Checkpoint2 />}></Route>
+        
       </div>
-      
     </Router>
   );
 }

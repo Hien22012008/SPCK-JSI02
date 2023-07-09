@@ -1,22 +1,10 @@
 import React from 'react';
 import { Carousel } from 'antd';
 import { useState, useEffect } from 'react'
-
-
-const contentStyle = {
-  height: '360px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
-
-const ContainerStyle = {
-  width: '560px',
-};
+import '../../Css/DetailCss.css'
 
 const Detail = ({ match }) => {
-
+  
   const urlDetail = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${match?.match?.params?.id}`;
 
   const [data, setData] = useState()
@@ -45,19 +33,21 @@ const Detail = ({ match }) => {
 
 
   return (
-    <div style={ContainerStyle}>
-        <Carousel autoplay>
+    <div>
+      <div class='slide'>
+      <Carousel autoplay>
           {
             data?.screenshots?.map((item) => {
               console.log("🚀 ~ file: Detail.js:52 ~ data?.screenshot?.map ~ data:", data)
               return (
-                <div style={{ width: '100%' }}>
+                <div>
                   <img src= {item?.image} />
                 </div>
               )
             })
           }
         </Carousel>
+      </div>
         {data?.short_description}
         
     </div>
