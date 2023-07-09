@@ -7,20 +7,23 @@ import 'firebase/compat/auth';
 import { useHistory } from 'react-router-dom'
 
 
-const Login = () => {
+const Login = ({ notificationLogin }) => {
     const history = useHistory()
 
     const handleLogin = async (values) => {
-        console.log("🚀 ~ file: Login.js:14 ~ handleLogin ~ values:", values)
+        console.log("🚀 ~ file: Login.js:14 ~ handleLogin ~ values:", values);
+
         try {
             await firebase.auth().signInWithEmailAndPassword(values?.email, values?.password);
-            console.log("Login success")
-            history.push("/")
+
+            notificationLogin('success', "Login success");
+            history.push("/");
         } catch (error) {
-            console.log("🚀 ~ file: Login.js:19 ~ handleLogin ~ error:", error)
-            // notification("error", "Login failed! Please check your Email and Password!")
+            notificationLogin('error', error.code);
         }
     }
+
+
     return (
         <div class='container'>
             <div class='form-login'>
@@ -58,7 +61,7 @@ const Login = () => {
                             placeholder="Password"
                         />
                     </Form.Item>
-                    
+
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className="login-form-button">
                             Login

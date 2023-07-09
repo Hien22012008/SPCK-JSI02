@@ -14,8 +14,20 @@ import Register from './Component/Register/Register';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { useEffect, useState } from 'react';
+import { Button, Radio, Form, Input, message, Col, notification } from 'antd';
+import User from './Component/User/User';
+import About from './Component/About';
+import Detail from './Component/Detail/Detail';
 
 function App() {
+  const [user, setUser] = useState({
+    userName: '',
+    email: '',
+    avt: '',
+    uid: ''
+  });
+  const [messageApi, contextHolder] = message.useMessage();
+  const [api, contextHolderNotification] = notification.useNotification();
 
   const config = {
     apiKey: 'AIzaSyAipy_GKdnFC5wVRbkyUCd4rBxZrD8TIZo',
@@ -24,19 +36,31 @@ function App() {
   };
   firebase.initializeApp(config);
 
+  const notificationLogin = (type, message) => {
+    messageApi.open({
+      type: type,
+      content: message,
+    });
+  };
+
+  const openNotificationWithIcon = (type, message, description) => {
+    api[type]({
+      message: message,
+      description: description,
+    });
+  };
+
+
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (userLogin) => {
       if (!userLogin) {
         // user logs out, handle something here
         console.log('User is not logged in');
-        // setUser(null);
+        setUser(null);
         return;
       }
       console.log('Logged in user: ', userLogin);
-      // setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL });
-      // notification("success", "Logged in successfully!")
-      // const token = await userLogin.getIdToken();
-      // console.log('Logged in user token: ', token);
+      setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL, email: userLogin.email, uid: userLogin.uid });
     });
 
     return () => unregisterAuthObserver();
@@ -45,14 +69,19 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        {contextHolder}
+        {contextHolderNotification}
+        <Header notificationLogin={notificationLogin} user={user} />
         <Route path='/' exact component={() => <Home />}></Route>
-        <Route path='/login' exact component={() => <Login />}></Route>
+        <Route path='/login' exact component={() => <Login notificationLogin={notificationLogin} />}></Route>
         <Route path='/store' exact component={() => <Store />}></Route>
-       <Route path='/register'exact component={() => <Register />}></Route>
+        <Route path='/register' exact component={() => <Register notificationLogin={notificationLogin} />}></Route>
+        <Route path='/information-user' exact component={() => <User notificationLogin={notificationLogin} />}></Route>
+        <Route path='/about' exact component={() => <About notificationLogin={notificationLogin} />}></Route>
+        <Route path='/game/:id' exact component={(match) =>  <Detail match={match} />}  ></Route>
       </div>
+      
     </Router>
-    
   );
 }
 

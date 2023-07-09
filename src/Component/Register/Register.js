@@ -1,14 +1,16 @@
 import React from 'react';
-import { LockOutlined} from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { LockOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Space } from 'antd';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import '../../Css/RegisterCss.css'
+import { useHistory } from 'react-router-dom'
 
-const Register = () => {
+const Register = ({ notificationLogin }) => {
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
     };
+    const history = useHistory()
 
     const handleSignUp = async (value) => {
         console.log("🚀 ~ file: Register.js:12 ~ handleSignUp ~ value:", value)
@@ -18,11 +20,10 @@ const Register = () => {
             // Cập nhật thông tin người dùng với tên đăng nhập
             await result.user.updateProfile({
                 displayName: value?.username,
-                phoneNumber: value?.phoneNumber
                 // photoURL
             });
-
-            console.log('Đăng ký thành công!');
+            history.push("/")
+            notificationLogin('success', 'Register success !')
             console.log('Thông tin người dùng:', result.user.displayName);
         } catch (error) {
             console.log(error.message);
@@ -30,75 +31,97 @@ const Register = () => {
     }
 
     return (
-        <div class='container'>
-            <div class='form-register'>
-                <Form
-                    name="normal_login"
-                    className="login-form"
+        <div className='container-register'>
+            <div className='form-register'>
+                <Form name="basic"
+                    labelCol={{
+                        span: 8,
+                    }}
+                    wrapperCol={{
+                        span: 16,
+                    }}
+                    style={{
+                        maxWidth: 'none',
+                        width: '100%'
+                    }}
                     initialValues={{
                         remember: true,
                     }}
                     onFinish={handleSignUp}
+                    autoComplete="off"
                 >
                     <Form.Item
-                        name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your Username!',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="Email" />
-                    </Form.Item>
-                    <Form.Item
+                        label="User Name"
                         name="username"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your Password!',
+                                message: 'Please input your User Name!',
                             },
-                        ]}
-                    >
-                        <Input
-                            placeholder="Username"
-                        />
+                        ]} >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your email!',
+                            },
+                        ]}>
+                        <Input />
                     </Form.Item>
 
                     <Form.Item
+                        label="Address"
+                        name="address"
+                        rules={[
+                            {
+                                message: 'Please input your address!',
+                            },
+                        ]}>
+                        <Space style={{ width: '100%' }} direction="vertical" size="middle">
+                            <Input style={{ width: '100%' }} />
+                        </Space>
+                    </Form.Item>
+                    <Form.Item
+                        label="Password"
                         name="password"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your Password!',
+                                message: 'Please input your password!',
                             },
-                        ]}
-                    >
-                        <Input
-                            prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
-                            placeholder="Password"
-                        />
+                        ]} >
+                        <Input.Password />
                     </Form.Item>
-
                     <Form.Item
-                        name="confirm-password"
+                        label="Confirm Password"
+                        name="confirmPassword"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your Confirm Password!',
+                                message: 'Confirm your password!',
                             },
-                        ]}
-                    >
-                        <Input
-                            placeholder="Confirm-Password"
-                        />
+                        ]} >
+                        <Input.Password />
+                    </Form.Item>
+                    <Form.Item
+                        name="remember"
+                        valuePropName="checked"
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }} >
                     </Form.Item>
 
-
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            Sign up
+                    <Form.Item
+                        wrapperCol={{
+                            offset: 6,
+                        }} >
+                        <Button type="primary" style={{ marginLeft: 10 }} htmlType="submit">
+                            Register
                         </Button>
                     </Form.Item>
                 </Form>

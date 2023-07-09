@@ -71,11 +71,11 @@ const Home = () => {
                 </div>
             </Carousel>
 
-           
+
 
             <div class='game-played-the-most'>
-            <h1>Played the most</h1>
-            
+                <h1>Played the most</h1>
+
                 <Image
                     style={Imgstyle}
                     height={406}
