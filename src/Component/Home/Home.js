@@ -55,22 +55,22 @@ const Home = () => {
         <div>
             <Carousel afterChange={onChange}>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={Spiderman1} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={Spiderman1} /></h3>
                 </div>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={Spiderman2} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={Spiderman2} /></h3>
                 </div>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={TLOU} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={TLOU} /></h3>
                 </div>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={RE4} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={RE4} /></h3>
                 </div>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={DS} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={DS} /></h3>
                 </div>
             </Carousel>
-            <div class='game-played-the-most'>
+            <div className='game-played-the-most'>
                 <h1>Played the most</h1>
 
                 <Image
@@ -102,7 +102,7 @@ const Home = () => {
                 />
 
             </div>
-            <div class='Update'>
+            <div className='Update'>
                 <h1>Update</h1>
 
                 <Image

@@ -127,8 +127,8 @@ const Store = () => {
         </div>
       </div>
 
-      <div class='games'>
-        <div class='content'>
+      <div className='games'>
+        <div className='content'>
           {
             data?.length > 0 ? data.slice(offset, offset + limit).map((item, index) => {
               return (
