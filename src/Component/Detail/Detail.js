@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import '../../Css/DetailCss.css'
 
 const Detail = ({ match }) => {
-  
+
   const urlDetail = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${match?.match?.params?.id}`;
 
   const [data, setData] = useState()
@@ -35,21 +35,21 @@ const Detail = ({ match }) => {
   return (
     <div>
       <div class='slide'>
-      <Carousel autoplay>
+        <Carousel autoplay>
           {
-            data?.screenshots?.map((item) => {
+            data?.screenshots?.map((item, index) => {
               console.log("🚀 ~ file: Detail.js:52 ~ data?.screenshot?.map ~ data:", data)
               return (
-                <div>
-                  <img src= {item?.image} />
+                <div key={index}>
+                  <img src={item?.image} />
                 </div>
               )
             })
           }
         </Carousel>
       </div>
-        {data?.short_description}
-        
+      {data?.description}
+
     </div>
   );
 };

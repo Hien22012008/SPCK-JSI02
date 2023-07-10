@@ -26,49 +26,60 @@ const Login = ({ notificationLogin }) => {
 
     return (
         <div class='container'>
-            <div class='form-login'>
-                <Form
-                    name="normal_login"
-                    className="login-form"
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={handleLogin}
+            <Form name="basic"
+                labelCol={{
+                    span: 8,
+                }}
+                wrapperCol={{
+                    span: 16,
+                }}
+                style={{
+                    maxWidth: 'none',
+                    width: 500
+                }}
+                initialValues={{
+                    remember: true,
+                }}
+                onFinish={handleLogin}
+                autoComplete="off"
+            >
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Username!',
+                        },
+                    ]}
                 >
-                    <Form.Item
-                        name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your Username!',
-                            },
-                        ]}
-                    >
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
-                    </Form.Item>
-                    <Form.Item
-                        name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your Password!',
-                            },
-                        ]}
-                    >
-                        <Input
-                            prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
-                            placeholder="Password"
-                        />
-                    </Form.Item>
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+                </Form.Item>
+                <Form.Item
+                    label="Password"
+                    name="password"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Password!',
+                        },
+                    ]}
+                >
+                    <Input
+                        prefix={<LockOutlined className="site-form-item-icon" />}
+                        type="password"
+                        placeholder="Password"
+                    />
+                </Form.Item>
 
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
-                            Login
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </div>
+                <Form.Item wrapperCol={{
+                    offset: 6,
+                }}>
+                    <Button type="primary" htmlType="submit" className="login-form-button">
+                        Login
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
 
     );

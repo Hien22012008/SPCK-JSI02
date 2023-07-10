@@ -70,9 +70,6 @@ const Home = () => {
                     <h3 style={contentStyle} class='slide'><img src={DS} /></h3>
                 </div>
             </Carousel>
-
-
-
             <div class='game-played-the-most'>
                 <h1>Played the most</h1>
 

@@ -1,9 +1,6 @@
-.form-register {
-    width: 30%;
- }
- 
+
  .container-register {
      display: flex;
      justify-content: center;
-     padding: 50px;
+     padding: 30px;
  }
