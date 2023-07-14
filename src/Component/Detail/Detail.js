@@ -5,7 +5,6 @@ import '../../Css/DetailCss.css'
 
 const Detail = ({ match }) => {
 
-<<<<<<< HEAD
   const contentStyle = {
     height: '460px',
     color: '#fff',
@@ -15,8 +14,6 @@ const Detail = ({ match }) => {
     border: '10px solid'
   };
 
-=======
->>>>>>> dabf6df53e86864407f61bf8624598f202754a65
   const urlDetail = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${match?.match?.params?.id}`;
 
   const [data, setData] = useState()
@@ -45,7 +42,6 @@ const Detail = ({ match }) => {
 
 
   return (
-<<<<<<< HEAD
     <div style={{ padding: '30px 30px' }}>
       <Row>
         <Col span={12} style={{ padding: '0 50px' }} >
@@ -69,25 +65,6 @@ const Detail = ({ match }) => {
           </div>
         </Col>
       </Row>
-=======
-    <div>
-      <div class='slide'>
-        <Carousel autoplay>
-          {
-            data?.screenshots?.map((item, index) => {
-              console.log("🚀 ~ file: Detail.js:52 ~ data?.screenshot?.map ~ data:", data)
-              return (
-                <div key={index}>
-                  <img src={item?.image} />
-                </div>
-              )
-            })
-          }
-        </Carousel>
-      </div>
-      {data?.description}
-
->>>>>>> dabf6df53e86864407f61bf8624598f202754a65
     </div>
 
   );
