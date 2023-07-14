@@ -141,9 +141,9 @@ const Store = () => {
                     paddingBottom: 10,
                     marginBottom: 20
                   }}
-                  cover={
-                    <img alt={item?.thumbnail} src={item?.thumbnail} />
-                  }
+                  // cover={
+                  //   <img alt={item?.thumbnail} src={item?.thumbnail} />
+                  // }
                   actions={[
                     <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
                   ]}
