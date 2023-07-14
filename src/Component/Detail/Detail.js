@@ -1,10 +1,19 @@
 import React from 'react';
-import { Carousel } from 'antd';
+import { Carousel, Button, Form, Input, message, Col, Row } from 'antd';
 import { useState, useEffect } from 'react'
 import '../../Css/DetailCss.css'
 
 const Detail = ({ match }) => {
-  
+
+  const contentStyle = {
+    height: '460px',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+    border: '10px solid'
+  };
+
   const urlDetail = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${match?.match?.params?.id}`;
 
   const [data, setData] = useState()
@@ -33,24 +42,31 @@ const Detail = ({ match }) => {
 
 
   return (
-    <div>
-      <div class='slide'>
-      <Carousel autoplay>
-          {
-            data?.screenshots?.map((item) => {
-              console.log("🚀 ~ file: Detail.js:52 ~ data?.screenshot?.map ~ data:", data)
-              return (
-                <div>
-                  <img src= {item?.image} />
-                </div>
-              )
-            })
-          }
-        </Carousel>
-      </div>
-        {data?.short_description}
-        
+    <div style={{ padding: '30px 30px' }}>
+      <Row>
+        <Col span={12} style={{ padding: '0 50px' }} >
+          <Carousel autoplay>
+            {
+              data?.screenshots?.map((item) => {
+                return (
+                  <div style={contentStyle}>
+                    <img style={{ width: '100%' }} src={item?.image} />
+                  </div>
+                )
+              })
+            }
+          </Carousel>
+        </Col>
+        <Col span={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'white' }}>
+          {data?.description}
+          <div style={{padding: '20px'}}>
+            <Button>ADD TO CART</Button>
+            <Button>RENT THIS GAME WITH 0,05$ FOR 1 HOUR</Button>
+          </div>
+        </Col>
+      </Row>
     </div>
+
   );
 };
 

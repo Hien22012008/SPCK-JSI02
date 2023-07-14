@@ -32,100 +32,89 @@ const Register = ({ notificationLogin }) => {
 
     return (
         <div className='container-register'>
-            <div className='form-register'>
-                <Form name="basic"
-                    labelCol={{
-                        span: 8,
-                    }}
+            <Form name="basic"
+                labelCol={{
+                    span: 8,
+                }}
+                wrapperCol={{
+                    span: 16,
+                }}
+                style={{
+                    maxWidth: 'none',
+                    width: 500
+                }}
+                initialValues={{
+                    remember: true,
+                }}
+                onFinish={handleSignUp}
+                autoComplete="off"
+            >
+                <Form.Item
+                    label="User Name"
+                    name="username"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your User Name!',
+                        },
+                    ]} >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your email!',
+                        },
+                    ]}>
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="Address"
+                    name="address"
+                    rules={[
+                        {
+                            message: 'Please input your address!',
+                        },
+                    ]}>
+                    <Space style={{ width: '100%' }} direction="vertical" size="middle">
+                        <Input style={{ width: '100%' }} />
+                    </Space>
+                </Form.Item>
+                <Form.Item
+                    label="Password"
+                    name="password"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your password!',
+                        },
+                    ]} >
+                    <Input.Password />
+                </Form.Item>
+                <Form.Item
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Confirm your password!',
+                        },
+                    ]} >
+                    <Input.Password />
+                </Form.Item>
+                <Form.Item
                     wrapperCol={{
-                        span: 16,
-                    }}
-                    style={{
-                        maxWidth: 'none',
-                        width: '100%'
-                    }}
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={handleSignUp}
-                    autoComplete="off"
-                >
-                    <Form.Item
-                        label="User Name"
-                        name="username"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your User Name!',
-                            },
-                        ]} >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label="Email"
-                        name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your email!',
-                            },
-                        ]}>
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Address"
-                        name="address"
-                        rules={[
-                            {
-                                message: 'Please input your address!',
-                            },
-                        ]}>
-                        <Space style={{ width: '100%' }} direction="vertical" size="middle">
-                            <Input style={{ width: '100%' }} />
-                        </Space>
-                    </Form.Item>
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your password!',
-                            },
-                        ]} >
-                        <Input.Password />
-                    </Form.Item>
-                    <Form.Item
-                        label="Confirm Password"
-                        name="confirmPassword"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Confirm your password!',
-                            },
-                        ]} >
-                        <Input.Password />
-                    </Form.Item>
-                    <Form.Item
-                        name="remember"
-                        valuePropName="checked"
-                        wrapperCol={{
-                            offset: 8,
-                            span: 16,
-                        }} >
-                    </Form.Item>
-
-                    <Form.Item
-                        wrapperCol={{
-                            offset: 6,
-                        }} >
-                        <Button type="primary" style={{ marginLeft: 10 }} htmlType="submit">
-                            Register
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </div>
+                        offset: 6,
+                    }} >
+                    <Button type="primary" htmlType="submit">
+                        Register
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
     );
 };

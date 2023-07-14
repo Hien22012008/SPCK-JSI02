@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .played-the-most {
     padding-right: 65%;
 }
@@ -9,6 +14,19 @@
 .Images {
     padding-left: 38%;
     padding-top: 5px;
+}
+
+.icon {
+    padding-right: 90%;
+}
+
+.footer {
+    margin: 20px;
+    background-image: url(https://img.freepik.com/free-vector/hexagonal-technology-pattern-mesh-background-with-text-space_1017-26293.jpg);
+}
+
+.description {
+    background-image: url(https://img.freepik.com/free-vector/hexagonal-technology-pattern-mesh-background-with-text-space_1017-26293.jpg);
 }
 
 h1 {

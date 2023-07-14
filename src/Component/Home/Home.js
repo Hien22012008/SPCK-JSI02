@@ -2,6 +2,7 @@ import '../../Css/HomeCss.css'
 import React from 'react';
 import { Carousel } from 'antd';
 import { Image } from 'antd';
+import { FacebookOutlined, YoutubeOutlined, TwitterOutlined } from '@ant-design/icons';
 
 const Spiderman1 = "https://cdn.neowin.com/news/images/uploaded/2022/08/1660227400_marvels-spider-man-keyart-01-en-10jun22.jpg";
 const Spiderman2 = "https://cdn.cloudflare.steamstatic.com/steam/apps/1817190/ss_971beba92204ad268878b23aa5288cc4f2118788.1920x1080.jpg?t=1672784176";
@@ -55,25 +56,22 @@ const Home = () => {
         <div>
             <Carousel afterChange={onChange}>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={Spiderman1} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={Spiderman1} /></h3>
                 </div>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={Spiderman2} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={Spiderman2} /></h3>
                 </div>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={TLOU} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={TLOU} /></h3>
                 </div>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={RE4} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={RE4} /></h3>
                 </div>
                 <div>
-                    <h3 style={contentStyle} class='slide'><img src={DS} /></h3>
+                    <h3 style={contentStyle} className='slide'><img src={DS} /></h3>
                 </div>
             </Carousel>
-
-
-
-            <div class='game-played-the-most'>
+            <div className='game-played-the-most'>
                 <h1>Played the most</h1>
 
                 <Image
@@ -105,7 +103,7 @@ const Home = () => {
                 />
 
             </div>
-            <div class='Update'>
+            <div className='Update'>
                 <h1>Update</h1>
 
                 <Image
@@ -137,6 +135,24 @@ const Home = () => {
 
                 />
 
+            </div>
+            <div class='footer'>
+                <div class='icon'>
+                    <icon style={{ width: '100%', color: 'white', padding: '10px', mode: "horizontal" }}>
+                        <FacebookOutlined />
+                    </icon>
+
+                    <icon style={{ width: '100%', color: 'white', padding: '10px', mode: "horizontal" }}>
+                        <YoutubeOutlined />
+                    </icon>
+
+                    <icon style={{ width: '100%', color: 'white', padding: '10px', mode: "horizontal" }}>
+                        <TwitterOutlined />
+                    </icon>
+                </div>
+                <div style={{ width: '500px' }}>
+                    <h1>This is a website to rent and buy games for cheaper than Steam</h1>
+                </div>
             </div>
         </div>
     );
