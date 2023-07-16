@@ -23,31 +23,6 @@ const Imgstyle = {
     padding: '10px'
 };
 
-// const [data, setData] = useState()
-//     useEffect(() => {
-//         request()
-//     }, [])
-
-//     const request = async () => {
-//         const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
-//         const options = {
-//             method: 'GET',
-//             headers: {
-//                 'X-RapidAPI-Key': 'ce2234ad95msh9d8c5043404fc84p1913a6jsn5df080088056',
-//                 'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
-//             }
-//         };
-//         try {
-//             const response = await fetch(url, options);
-//             const result = await response.json();
-//             setData(result)
-//             console.log(result);
-//         } catch (error) {
-//             console.error(error);
-//         }
-//     }
-
-
 const Home = () => {
     const onChange = (currentSlide) => {
         console.log(currentSlide);

@@ -19,6 +19,7 @@ import User from './Component/User/User';
 import About from './Component/About';
 import Detail from './Component/Detail/Detail';
 import Checkpoint2 from './Component/Checkpoint2/Checkpoint2';
+import Library from './Component/Library/Library';
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
 
   const config = {
     apiKey: 'AIzaSyAipy_GKdnFC5wVRbkyUCd4rBxZrD8TIZo',
-    authDomain: 'login-firebase-e1d7a.firebaseapp.com	',
+    authDomain: 'login-firebase-e1d7a.firebaseapp.com',
     // ...
   };
   firebase.initializeApp(config);
@@ -63,6 +64,7 @@ function App() {
       }
       console.log('Logged in user: ', userLogin);
       setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL, email: userLogin.email, uid: userLogin.uid });
+      localStorage.setItem('user', JSON.stringify(userLogin))
     });
 
     return () => unregisterAuthObserver();
@@ -78,10 +80,11 @@ function App() {
         <Route path='/login' exact component={() => <Login notificationLogin={notificationLogin} />}></Route>
         <Route path='/store' exact component={() => <Store />}></Route>
         <Route path='/register' exact component={() => <Register notificationLogin={notificationLogin} />}></Route>
-        <Route path='/information-user' exact component={() => <User notificationLogin={notificationLogin} />}></Route>
+        <Route path='/information-user' exact component={() => <User user={user}  notificationLogin={notificationLogin} />}></Route>
         <Route path='/about' exact component={() => <About notificationLogin={notificationLogin} />}></Route>
         <Route path='/game/:id' exact component={(match) =>  <Detail match={match} />}  ></Route>
         <Route path='/checkpoint' exact component={() =>  <Checkpoint2 />}></Route>
+        <Route path='/library' exact component={() => <Library />}></Route>
       </div>
     </Router>
   );

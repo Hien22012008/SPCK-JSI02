@@ -1,6 +1,6 @@
 import '../../Css/LoginCss.css'
 import React from 'react';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, GoogleOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -23,9 +23,19 @@ const Login = ({ notificationLogin }) => {
         }
     }
 
+    const handleGoogleLogin = async () => {
+        try {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            await firebase.auth().signInWithRedirect(provider);
+            history.push("/")
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
     return (
-        <div class='container'>
+        <div className='container'>
+
             <Form name="basic"
                 labelCol={{
                     span: 8,
@@ -70,6 +80,15 @@ const Login = ({ notificationLogin }) => {
                         type="password"
                         placeholder="Password"
                     />
+                </Form.Item>
+
+                <Form.Item wrapperCol={{ offset: 6 }}>
+                    <Button
+                        style={{ margin: '10px', marginRight: 10 }}
+                        onClick={handleGoogleLogin}>
+                        <icon style={{ padding: '5px' }}><GoogleOutlined /></icon>
+                        Google
+                    </Button>
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 6 }}>

@@ -3,13 +3,7 @@
 }
 
 .container {
-<<<<<<< HEAD
     width: 300px;
     padding-left: 30%;
     padding-top: 50px;
-=======
-    display: flex;
-    justify-content: center;
-    padding: 30px;
->>>>>>> dabf6df53e86864407f61bf8624598f202754a65
 }

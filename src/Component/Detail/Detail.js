@@ -40,7 +40,6 @@ const Detail = ({ match }) => {
     }
   }
 
-
   return (
     <div style={{ padding: '30px 30px' }}>
       <Row>
@@ -59,9 +58,13 @@ const Detail = ({ match }) => {
         </Col>
         <Col span={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'white' }}>
           {data?.description}
-          <div style={{padding: '20px'}}>
-            <Button>ADD TO CART</Button>
-            <Button>RENT THIS GAME WITH 0,05$ FOR 1 HOUR</Button>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ padding: '10px' }}>
+              <Button>ADD TO CART</Button>
+            </div>
+            <div style={{ padding: '10px' }}>
+              <Button>RENT THIS GAME WITH 0,05$ FOR 1 HOUR</Button>
+            </div>
           </div>
         </Col>
       </Row>

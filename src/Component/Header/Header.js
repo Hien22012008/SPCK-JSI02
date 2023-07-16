@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserOutlined, DownloadOutlined, BookOutlined, AppstoreOutlined, HomeOutlined, SmileOutlined } from '@ant-design/icons';
+import { UserOutlined, BookOutlined, AppstoreOutlined, HomeOutlined, SmileOutlined } from '@ant-design/icons';
 import { Affix, Avatar, Input, Dropdown, Menu, Modal } from 'antd';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
@@ -26,14 +26,17 @@ const Header = ({ user, notificationLogin }) => {
     };
 
     const onClick = (e) => {
-        console.log('click ', e.key);
-        setCurrent(e.key);
-        history.push(e.key)
+        if(e.key === 'logout'){
+            return;
+        }else{
+            setCurrent(e.key);
+            history.push(`/${e.key}`)
+        }
     };
     const items = [
         {
             label: 'Home',
-            key: '/',
+            key: '',
             icon: <HomeOutlined />,
         },
         {
@@ -45,11 +48,6 @@ const Header = ({ user, notificationLogin }) => {
             label: 'Library',
             key: 'library',
             icon: <BookOutlined />,
-        },
-        {
-            label: 'Download',
-            key: 'download',
-            icon: <DownloadOutlined />,
         },
         {
             label: 'About',
@@ -83,6 +81,7 @@ const Header = ({ user, notificationLogin }) => {
         user ?
             {
                 label: <div onClick={() => setOpen(true)}>Log out</div>,
+                key: 'logout'
             } : '',
     ];
     console.log("🤔🤔🤔 ~ file: Header.js:10 ~ Header ~ user:", user)
