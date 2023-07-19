@@ -22,13 +22,9 @@
 
 .footer {
     min-width: 100%;
-    background-image: url(https://img.freepik.com/free-vector/hexagonal-technology-pattern-mesh-background-with-text-space_1017-26293.jpg);
-}
-
-.description {
     padding: 20px 20px;
     width: 450px;
-    height: 500px;
+    height: 100px;
     background-image: url(https://img.freepik.com/free-vector/hexagonal-technology-pattern-mesh-background-with-text-space_1017-26293.jpg);
     position: absolute;
     z-index: 10000;
@@ -41,5 +37,5 @@ h1 {
 }
 
 body {
-    background-color: rgb(60, 60, 60);
+    background-color: rgb(57, 57, 57);
 }

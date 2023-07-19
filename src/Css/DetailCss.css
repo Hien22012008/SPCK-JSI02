@@ -1,4 +1,27 @@
+.btn {
+    background-color: rgb(83, 157, 78);
+    color: white;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.game-name {
+    padding-right: 85%;
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .description {
     color: white;
-    width: 300px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    background-color: rgb(39, 38, 38);
+    height: 355px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
 }

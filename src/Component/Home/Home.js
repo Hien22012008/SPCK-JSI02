@@ -24,12 +24,9 @@ const Imgstyle = {
 };
 
 const Home = () => {
-    const onChange = (currentSlide) => {
-        console.log(currentSlide);
-    };
     return (
         <div>
-            <Carousel afterChange={onChange}>
+            <Carousel autoplay>
                 <div>
                     <h3 style={contentStyle} className='slide'><img src={Spiderman1} /></h3>
                 </div>

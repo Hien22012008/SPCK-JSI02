@@ -26,7 +26,7 @@ const Login = ({ notificationLogin }) => {
     const handleGoogleLogin = async () => {
         try {
             const provider = new firebase.auth.GoogleAuthProvider();
-            await firebase.auth().signInWithRedirect(provider);
+            await firebase.auth().signInWithPopup(provider);
             history.push("/")
         } catch (error) {
             console.log(error.message);
@@ -53,34 +53,37 @@ const Login = ({ notificationLogin }) => {
                 onFinish={handleLogin}
                 autoComplete="off"
             >
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Username!',
-                        },
-                    ]}
-                >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
-                </Form.Item>
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Password!',
-                        },
-                    ]}
-                >
-                    <Input
-                        prefix={<LockOutlined className="site-form-item-icon" />}
-                        type="password"
-                        placeholder="Password"
-                    />
-                </Form.Item>
+                <div style={{paddingLeft: '30%', width: '100%'}}>
+                    <Form.Item
+                        name="username"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your Username!',
+                            },
+                        ]}
+                    >
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    </Form.Item>
+                </div>
+
+                <div style={{paddingLeft: '30%', width: '100%'}}>
+                    <Form.Item
+                        name="password"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your Password!',
+                            },
+                        ]}
+                    >
+                        <Input
+                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </Form.Item>
+                </div>
 
                 <Form.Item wrapperCol={{ offset: 6 }}>
                     <Button
