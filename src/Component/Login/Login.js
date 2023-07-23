@@ -35,7 +35,7 @@ const Login = ({ notificationLogin }) => {
 
     return (
         <div className='container'>
-
+            <div>
             <Form name="basic"
                 labelCol={{
                     span: 8,
@@ -55,19 +55,17 @@ const Login = ({ notificationLogin }) => {
             >
                 <div style={{paddingLeft: '30%', width: '100%'}}>
                     <Form.Item
-                        name="username"
+                        name="email"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your Username!',
+                                message: 'Please input your Email',
                             },
                         ]}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
                     </Form.Item>
-                </div>
-
-                <div style={{paddingLeft: '30%', width: '100%'}}>
+                    
                     <Form.Item
                         name="password"
                         rules={[
@@ -85,6 +83,7 @@ const Login = ({ notificationLogin }) => {
                     </Form.Item>
                 </div>
 
+                
                 <Form.Item wrapperCol={{ offset: 6 }}>
                     <Button
                         style={{ margin: '10px', marginRight: 10 }}
@@ -100,8 +99,8 @@ const Login = ({ notificationLogin }) => {
                     </Button>
                 </Form.Item>
             </Form>
+            </div>
         </div>
-
     );
 };
 

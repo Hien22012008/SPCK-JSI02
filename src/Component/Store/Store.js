@@ -1,18 +1,53 @@
 import '../../Css/StoreCss.css'
 import React from 'react';
-import { Input } from 'antd';
+import { Input, Button } from 'antd';
 import { useState, useEffect } from 'react';
 import { Card, FloatButton, Pagination, TreeSelect } from 'antd';
 import { useHistory } from 'react-router-dom'
 
 const { Meta } = Card;
 
-const Store = () => {
+const Store = ({ user,openNotificationWithIcon }) => {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const history = useHistory()
   const [data, setData] = useState()
   const [valueSearch, setValueSearch] = useState();
+
+  const addToCart = (item) => {
+    const inCart = localStorage.getItem(`carts${user?.uid}`)
+    const cart = {
+      ...item,
+      userID: user?.uid
+    }
+    console.log("🚀 ~ file: Store.js:20 ~ addToCart ~ cart:", cart)
+    console.log("🚀 ~ file: Store.js:20 ~ addToCart ~ user:", user)
+    if (user?.uid) {
+      if (inCart) {
+        let isCart = JSON.parse(inCart)
+        let find = false
+        isCart = isCart.map(element => {
+          if (element.id === item.id) {
+            find = true
+            openNotificationWithIcon('error','Error','This game is already in your cart')
+            return { ...element };
+          } else {
+            return element
+          }
+        });
+        if (!find) {
+          isCart.push(cart)
+        }
+        localStorage.setItem(`carts${user?.uid}`, JSON.stringify(isCart));
+        return !find ? openNotificationWithIcon('success','Success','ADD TO CART SUCCESSFULLY') : ''
+      } else {
+        localStorage.setItem(`carts${user?.uid}`, JSON.stringify([cart]));
+      }
+      openNotificationWithIcon('success','Success','ADD TO CART SUCCESSFULLY')
+    } else {
+      openNotificationWithIcon('warning','WARNING','WARNING ! PLEASE LOGIN TO ADDTO CART')
+    }
+  }
 
   const { Search } = Input;
   const treeData = [
@@ -146,6 +181,7 @@ const Store = () => {
                   }
                   actions={[
                     <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
+                    <Button style={{ background: 'rgb(83, 157, 78)', color: 'white' }} onClick={() => addToCart(item)}>ADD TO CART</Button>
                   ]}
                 >
                   <div onClick={() => history.push(`/game/${item?.id}`)}>

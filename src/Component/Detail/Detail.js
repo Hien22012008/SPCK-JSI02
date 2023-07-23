@@ -6,7 +6,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import '../../Css/DetailCss.css'
 import { useHistory } from 'react-router-dom'
 
-const Detail = ({ match }) => {
+const Detail = ({ user, match }) => {
 
   const contentStyle = {
     height: '460px',
@@ -46,7 +46,7 @@ const Detail = ({ match }) => {
   }
 
   return (
-    <div style={{ padding: '30px 30px', justifyContent: 'center', display: 'flex' }}>
+    <div style={{ padding: '30px 30px', justifyContent: 'center', display: 'flex'}}>
       <div style={{ color: 'white' }} onClick={() => history.push('/store')}>
       <ArrowLeftOutlined />
       </div>

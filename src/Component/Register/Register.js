@@ -49,66 +49,54 @@ const Register = ({ notificationLogin }) => {
                 onFinish={handleSignUp}
                 autoComplete="off"
             >
-                <Form.Item
-                    label="User Name"
-                    name="username"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your User Name!',
-                        },
-                    ]} >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your email!',
-                        },
-                    ]}>
-                    <Input />
-                </Form.Item>
+                <div style={{paddingLeft: '20%', width: '100%'}}>
+                    <Form.Item
+                        name="username"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your User Name!',
+                            },
+                        ]} >
+                        <Input placeholder='Username' />
+                    </Form.Item>
 
-                <Form.Item
-                    label="Address"
-                    name="address"
-                    rules={[
-                        {
-                            message: 'Please input your address!',
-                        },
-                    ]}>
-                    <Space style={{ width: '100%' }} direction="vertical" size="middle">
-                        <Input style={{ width: '100%' }} />
-                    </Space>
-                </Form.Item>
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                    ]} >
-                    <Input.Password />
-                </Form.Item>
-                <Form.Item
-                    label="Confirm Password"
-                    name="confirmPassword"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Confirm your password!',
-                        },
-                    ]} >
-                    <Input.Password />
-                </Form.Item>
+                    <Form.Item
+                        name="email"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your email!',
+                            },
+                        ]}>
+                        <Input placeholder='Email' />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="password"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                        ]} >
+                        <Input.Password placeholder='Password' />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="confirmPassword"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Confirm your password!',
+                            },
+                        ]} >
+                        <Input.Password placeholder='Confirm Password' />
+                    </Form.Item>
+                </div>
                 <Form.Item
                     wrapperCol={{
-                        offset: 6,
+                        offset: 2,
                     }} >
                     <Button type="primary" htmlType="submit">
                         Register
