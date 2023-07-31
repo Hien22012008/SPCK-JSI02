@@ -1,6 +1,4 @@
-
- .container-register {
-     display: flex;
-     justify-content: center;
-     padding: 30px;
- }
+.form-register {
+    background-image: url(https://w0.peakpx.com/wallpaper/305/41/HD-wallpaper-spider-man-ps4-spider.jpg);
+    border-radius: 10px;
+}

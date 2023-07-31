@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 
 const { Meta } = Card;
 
-const Store = ({ user,openNotificationWithIcon }) => {
+const Store = ({ user, openNotificationWithIcon }) => {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const history = useHistory()
@@ -29,7 +29,7 @@ const Store = ({ user,openNotificationWithIcon }) => {
         isCart = isCart.map(element => {
           if (element.id === item.id) {
             find = true
-            openNotificationWithIcon('error','Error','This game is already in your cart')
+            openNotificationWithIcon('error', 'Error', 'This game is already in your cart')
             return { ...element };
           } else {
             return element
@@ -39,13 +39,13 @@ const Store = ({ user,openNotificationWithIcon }) => {
           isCart.push(cart)
         }
         localStorage.setItem(`carts${user?.uid}`, JSON.stringify(isCart));
-        return !find ? openNotificationWithIcon('success','Success','ADD TO CART SUCCESSFULLY') : ''
+        return !find ? openNotificationWithIcon('success', 'Success', 'ADD TO CART SUCCESSFULLY') : ''
       } else {
         localStorage.setItem(`carts${user?.uid}`, JSON.stringify([cart]));
       }
-      openNotificationWithIcon('success','Success','ADD TO CART SUCCESSFULLY')
+      openNotificationWithIcon('success', 'Success', 'ADD TO CART SUCCESSFULLY')
     } else {
-      openNotificationWithIcon('warning','WARNING','WARNING ! PLEASE LOGIN TO ADDTO CART')
+      openNotificationWithIcon('warning', 'WARNING', 'WARNING ! PLEASE LOGIN TO ADD TO CART')
     }
   }
 
@@ -140,7 +140,7 @@ const Store = ({ user,openNotificationWithIcon }) => {
           />
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <span style={{ color: 'white' }}>Caterory</span>
+          <span style={{ color: 'white' }}>Game genre</span>
           <TreeSelect
             showSearch
             treeIcon={true}
@@ -181,7 +181,7 @@ const Store = ({ user,openNotificationWithIcon }) => {
                   }
                   actions={[
                     <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
-                    <Button style={{ background: 'rgb(83, 157, 78)', color: 'white' }} onClick={() => addToCart(item)}>ADD TO CART</Button>
+                    <Button className='btn' onClick={() => addToCart(item)}>ADD TO CART</Button>
                   ]}
                 >
                   <div onClick={() => history.push(`/game/${item?.id}`)}>
@@ -206,7 +206,9 @@ const Store = ({ user,openNotificationWithIcon }) => {
           }
         </div>
       </div>
+
       <FloatButton.BackTop visibilityHeight={100} />
+      
       <div>
         {
           data?.length > 0 && (

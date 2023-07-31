@@ -18,7 +18,6 @@ const Library = ({ user }) => {
                         dataCart?.length > 0 ? dataCart?.map((item) => {
                             return (
                                 <Card
-
                                     hoverable
                                     style={{
                                         width: 320,

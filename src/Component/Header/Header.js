@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserOutlined, BookOutlined, AppstoreOutlined, HomeOutlined, SmileOutlined } from '@ant-design/icons';
-import { Affix, Avatar, Input, Dropdown, Menu, Modal } from 'antd';
+import { Affix, Avatar, Input, Dropdown, Menu, Modal, Space } from 'antd';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import firebase from 'firebase/compat/app';
@@ -26,9 +26,9 @@ const Header = ({ user, notificationLogin }) => {
     };
 
     const onClick = (e) => {
-        if(e.key === 'logout'){
+        if (e.key === 'logout') {
             return;
-        }else{
+        } else {
             setCurrent(e.key);
             history.push(`/${e.key}`)
         }

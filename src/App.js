@@ -73,18 +73,30 @@ function App() {
   return (
     <Router>
       <div className="App">
+        
         {contextHolder}
+
         {contextHolderNotification}
+
         <Header notificationLogin={notificationLogin} user={user} />
+
         <Route path='/' exact component={() => <Home />}></Route>
         <Route path='/login' exact component={() => <Login notificationLogin={notificationLogin} />}></Route>
+
         <Route path='/store' exact component={() => <Store openNotificationWithIcon={openNotificationWithIcon} user={user} />}></Route>
+
         <Route path='/register' exact component={() => <Register notificationLogin={notificationLogin} />}></Route>
+
         <Route path='/information-user' exact component={() => <User user={user}  notificationLogin={notificationLogin} />}></Route>
+
         <Route path='/about' exact component={() => <About notificationLogin={notificationLogin} />}></Route>
-        <Route path='/game/:id' exact component={(match) =>  <Detail match={match} user={user} />}  ></Route>
+
+        <Route path='/game/:id' exact component={(match) =>  <Detail match={match} openNotificationWithIcon={openNotificationWithIcon} user={user}/>}  ></Route>
+
         <Route path='/checkpoint' exact component={() =>  <Checkpoint2 />}></Route>
+
         <Route path='/library' exact component={() => <Library user={user} />}></Route>
+
       </div>
     </Router>
   );

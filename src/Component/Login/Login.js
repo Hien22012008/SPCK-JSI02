@@ -34,7 +34,7 @@ const Login = ({ notificationLogin }) => {
     };
 
     return (
-        <div className='container'>
+        <div style={{ width: '300px', paddingLeft: '34%', paddingTop: '50px' }}>
             <div>
             <Form name="basic"
                 labelCol={{
@@ -45,15 +45,17 @@ const Login = ({ notificationLogin }) => {
                 }}
                 style={{
                     maxWidth: 'none',
-                    width: 500
+                    width: 500,
+                    height: '600px'
                 }}
                 initialValues={{
                     remember: true,
                 }}
                 onFinish={handleLogin}
                 autoComplete="off"
+                className='form-login'
             >
-                <div style={{paddingLeft: '30%', width: '100%'}}>
+                <div style={{paddingLeft: '16%', width: '100%', paddingTop: '80px'}}>
                     <Form.Item
                         name="email"
                         rules={[
@@ -84,7 +86,7 @@ const Login = ({ notificationLogin }) => {
                 </div>
 
                 
-                <Form.Item wrapperCol={{ offset: 6 }}>
+                <Form.Item wrapperCol={{ offset: 0.5 }}>
                     <Button
                         style={{ margin: '10px', marginRight: 10 }}
                         onClick={handleGoogleLogin}>
@@ -93,7 +95,7 @@ const Login = ({ notificationLogin }) => {
                     </Button>
                 </Form.Item>
 
-                <Form.Item wrapperCol={{ offset: 6 }}>
+                <Form.Item wrapperCol={{ offset: 0.5 }} style={{paddingBottom: '20px'}}>
                     <Button type="primary" htmlType="submit" className="login-form-button">
                         Login
                     </Button>
