@@ -7,47 +7,14 @@ import { useHistory } from 'react-router-dom'
 
 const { Meta } = Card;
 
-const Store = ({ user, openNotificationWithIcon }) => {
+const Store = ({ user, openNotificationWithIcon, addToCart }) => {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(10)
   const history = useHistory()
   const [data, setData] = useState()
   const [valueSearch, setValueSearch] = useState();
 
-  const addToCart = (item) => {
-    const inCart = localStorage.getItem(`carts${user?.uid}`)
-    const cart = {
-      ...item,
-      userID: user?.uid
-    }
-    console.log("🚀 ~ file: Store.js:20 ~ addToCart ~ cart:", cart)
-    console.log("🚀 ~ file: Store.js:20 ~ addToCart ~ user:", user)
-    if (user?.uid) {
-      if (inCart) {
-        let isCart = JSON.parse(inCart)
-        let find = false
-        isCart = isCart.map(element => {
-          if (element.id === item.id) {
-            find = true
-            openNotificationWithIcon('error', 'Error', 'This game is already in your cart')
-            return { ...element };
-          } else {
-            return element
-          }
-        });
-        if (!find) {
-          isCart.push(cart)
-        }
-        localStorage.setItem(`carts${user?.uid}`, JSON.stringify(isCart));
-        return !find ? openNotificationWithIcon('success', 'Success', 'ADD TO CART SUCCESSFULLY') : ''
-      } else {
-        localStorage.setItem(`carts${user?.uid}`, JSON.stringify([cart]));
-      }
-      openNotificationWithIcon('success', 'Success', 'ADD TO CART SUCCESSFULLY')
-    } else {
-      openNotificationWithIcon('warning', 'WARNING', 'WARNING ! PLEASE LOGIN TO ADD TO CART')
-    }
-  }
+  
 
   const { Search } = Input;
   const treeData = [
@@ -98,7 +65,7 @@ const Store = ({ user, openNotificationWithIcon }) => {
     request()
   }, [valueSearch])
 
-  const request = async () => {
+  const request = async (value) => {
     const url = `https://free-to-play-games-database.p.rapidapi.com/api/games${valueSearch ? '?category=' + valueSearch : ''}`;
     const options = {
       method: 'GET',
@@ -110,7 +77,7 @@ const Store = ({ user, openNotificationWithIcon }) => {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      setData(result)
+      value ? setData(result.filter((item) => item?.title?.toLowerCase().includes(value.toLowerCase()))) : setData(result)
       console.log(result);
     } catch (error) {
       console.error(error);
@@ -174,7 +141,8 @@ const Store = ({ user, openNotificationWithIcon }) => {
                     width: 320,
                     height: 390,
                     paddingBottom: 10,
-                    marginBottom: 20
+                    marginBottom: 20,
+                    marginRight: 20
                   }}
                   cover={
                     <img alt={item?.thumbnail} src={item?.thumbnail} />
@@ -217,6 +185,7 @@ const Store = ({ user, openNotificationWithIcon }) => {
               pageSize={limit}
               total={data.length}
               onChange={handlePageChange}
+              className='pagination'
             />
           )
         }

@@ -6,7 +6,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import '../../Css/DetailCss.css'
 import { useHistory } from 'react-router-dom'
 
-const Detail = ({ match }) => {
+const Detail = ({ match , addToCart }) => {
 
     const contentStyle = {
         height: '460px',
@@ -72,21 +72,30 @@ const Detail = ({ match }) => {
                     </div>
                 </Col>
 
-                <Col
-                actions = {[
-
-                ]}
-                >
+                <Col  >
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <div>
-                            <div style={{ paddingTop: '10px' }}>
-                                <Space direction="vertical" size={16}>
-                                    <Space wrap size={16}>
-                                        <h1>Communication :</h1><Avatar size={100} src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/2048px-Steam_icon_logo.svg.png' />
-                                    </Space>
+                        <div style={{ paddingTop: '10px' }}>
+                            <Space direction="vertical" size={12}>
+                                <Space wrap size={16}>
+                                    <h1>Communication :</h1><Avatar size={100} src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/2048px-Steam_icon_logo.svg.png' />
                                 </Space>
-                            </div>
+                            </Space>
                         </div>
+                        <div>
+                            <Row>
+                                <Col span={12} className='game-genre'>
+                                    <h1>Game genre: {data?.genre}</h1>
+                                </Col>
+                                <Col span={8} className='game-platform'>
+                                    <h1>Platform: {data?.platform}</h1>
+                                </Col>
+                            </Row>
+                        </div>
+                    </div>
+                    <div>
+                        <Button className='btn' style={{ width: '20%' }} onClick={() => addToCart(data)}>
+                            ADD TO CART
+                        </Button>
                     </div>
                 </Col>
 

@@ -70,6 +70,41 @@ function App() {
     return () => unregisterAuthObserver();
   }, []);
 
+  const addToCart = (item) => {
+    const inCart = localStorage.getItem(`carts${user?.uid}`)
+    const cart = {
+      ...item,
+      userID: user?.uid
+    }
+    console.log("🚀 ~ file: Store.js:20 ~ addToCart ~ cart:", cart)
+    console.log("🚀 ~ file: Store.js:20 ~ addToCart ~ user:", user)
+    if (user?.uid) {
+      if (inCart) {
+        let isCart = JSON.parse(inCart)
+        let find = false
+        isCart = isCart.map(element => {
+          if (element.id === item.id) {
+            find = true
+            openNotificationWithIcon('error', 'Error', 'This game is already in your cart')
+            return { ...element };
+          } else {
+            return element
+          }
+        });
+        if (!find) {
+          isCart.push(cart)
+        }
+        localStorage.setItem(`carts${user?.uid}`, JSON.stringify(isCart));
+        return !find ? openNotificationWithIcon('success', 'Success', 'ADD TO CART SUCCESSFULLY') : ''
+      } else {
+        localStorage.setItem(`carts${user?.uid}`, JSON.stringify([cart]));
+      }
+      openNotificationWithIcon('success', 'Success', 'ADD TO CART SUCCESSFULLY')
+    } else {
+      openNotificationWithIcon('warning', 'WARNING', 'WARNING ! PLEASE LOGIN TO ADD TO CART')
+    }
+  }
+
   return (
     <Router>
       <div className="App">
@@ -83,7 +118,7 @@ function App() {
         <Route path='/' exact component={() => <Home />}></Route>
         <Route path='/login' exact component={() => <Login notificationLogin={notificationLogin} />}></Route>
 
-        <Route path='/store' exact component={() => <Store openNotificationWithIcon={openNotificationWithIcon} user={user} />}></Route>
+        <Route path='/store' exact component={() => <Store openNotificationWithIcon={openNotificationWithIcon} user={user} addToCart={addToCart} />}></Route>
 
         <Route path='/register' exact component={() => <Register notificationLogin={notificationLogin} />}></Route>
 
@@ -91,7 +126,7 @@ function App() {
 
         <Route path='/about' exact component={() => <About notificationLogin={notificationLogin} />}></Route>
 
-        <Route path='/game/:id' exact component={(match) =>  <Detail match={match} openNotificationWithIcon={openNotificationWithIcon} user={user}/>}  ></Route>
+        <Route path='/game/:id' exact component={(match) =>  <Detail match={match} addToCart={addToCart}/>}  ></Route>
 
         <Route path='/checkpoint' exact component={() =>  <Checkpoint2 />}></Route>
 

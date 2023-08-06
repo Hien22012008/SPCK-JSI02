@@ -1,13 +1,14 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, QRCode } from 'antd';
+import { Button, QRCode, Col } from 'antd';
 import { useState } from 'react';
+
 const About = () => {
     const [size, setSize] = useState(260);
     const increase = () => {
         setSize((prevSize) => {
             const newSize = prevSize + 10;
             if (newSize > 300) {
-                return 300;
+                return 30;
             }
             return newSize;
         });
@@ -23,25 +24,31 @@ const About = () => {
     };
 
     return (
-        <div style={{ width: '50%', display: 'flex', flexDirection: 'column', padding: 50 }}>
-            <Button.Group
-                style={{
-                    marginBottom: 16,
-                }} >
-                <Button onClick={decline} disabled={size <= 48} icon={<MinusOutlined />}>
-                    Smaller
-                </Button>
-                <Button onClick={increase} disabled={size >= 300} icon={<PlusOutlined />}>
-                    Larger
-                </Button>
-            </Button.Group>
-            <QRCode
-                errorLevel="H"
-                size={size}
-                iconSize={size / 4}
-                value="https://free-game.vercel.app/"
-            // icon="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
-            />
+        <div style={{ paddingLeft: '40%' }}>
+            <div style={{ width: '50%', display: 'flex', flexDirection: 'column' }}>
+                <Button.Group
+                    style={{
+                        padding: '35px'
+                    }} >
+                    <Button onClick={decline} disabled={size <= 48} icon={<MinusOutlined />}>
+                        Smaller
+                    </Button>
+                    <Button onClick={increase} disabled={size >= 300} icon={<PlusOutlined />}>
+                        Larger
+                    </Button>
+                </Button.Group>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <Col span={7} style={{ background: 'white' }}>
+                    <QRCode
+                        errorLevel="H"
+                        size={size}
+                        iconSize={size / 10}
+                        value="https://free-game.vercel.app/"
+                    // icon="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+                    />
+                </Col>
+            </div>
         </div>
     );
 };

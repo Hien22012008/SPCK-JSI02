@@ -14,21 +14,45 @@ const Register = ({ notificationLogin }) => {
 
     const handleSignUp = async (value) => {
         console.log("🚀 ~ file: Register.js:12 ~ handleSignUp ~ value:", value)
-        try {
-            const result = await firebase.auth().createUserWithEmailAndPassword(value?.email, value?.password);
 
-            // Cập nhật thông tin người dùng với tên đăng nhập
-            await result.user.updateProfile({
-                displayName: value?.username,
-                // photoURL
-            });
-            history.push("/login")
-            notificationLogin('success', 'Register success !')
-            console.log('Thông tin người dùng:', result.user.displayName);
-        } catch (error) {
-            console.log(error.message);
+        const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        // const phoneRegex = /^\d{9}$/;
+        if (!emailRegex.test(value?.email)) {
+            alert("Please enter a valid email address")
+            // return false;
+            // openNotification('top')
+        }
+        // else if (!phoneRegex.test(value?.phoneNumber)) {
+        //     alert("Please enter a valid phone number")
+        //     return false;
+        // } 
+        else if (value?.password.length < 6) {
+            alert("Please enter a password of 6 characters or more")
+            return false;
+        }
+        else if (value?.confirmPassword !== value?.password) {
+            alert("Passwords do not match")
+            return false;
+        } else {
+            try {
+                const result = await firebase.auth().createUserWithEmailAndPassword(value?.email, value?.password);
+
+                // Cập nhật thông tin người dùng với tên đăng nhập
+                await result.user.updateProfile({
+                    displayName: value?.username,
+                    // photoURL
+                });
+                history.push("/login")
+                notificationLogin('success', 'Register success !')
+                console.log('Thông tin người dùng:', result.user.displayName);
+            } catch (error) {
+                console.log(error.message);
+            }
         }
     }
+
+
+
 
     return (
         <div style={{ width: '300px', paddingLeft: '34%', paddingTop: '50px' }}>
@@ -102,7 +126,7 @@ const Register = ({ notificationLogin }) => {
                             offset: 0.5,
                         }}
                         style={{
-                          paddingBottom: '20px'
+                            paddingBottom: '20px'
                         }} >
                         <Button type="primary" htmlType="submit">
                             Register
