@@ -93,7 +93,7 @@ const Detail = ({ match , addToCart }) => {
                         </div>
                     </div>
                     <div>
-                        <Button className='btn' style={{ width: '20%' }} onClick={() => addToCart(data)}>
+                        <Button className='btn' style={{ width: '20%', paddingRight: '70%' }} onClick={() => addToCart(data)}>
                             ADD TO CART
                         </Button>
                     </div>
