@@ -1,6 +1,7 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, QRCode, Col } from 'antd';
 import { useState } from 'react';
+import '../Css/AboutCss.css'
 
 const About = () => {
     const [size, setSize] = useState(260);
@@ -8,7 +9,7 @@ const About = () => {
         setSize((prevSize) => {
             const newSize = prevSize + 10;
             if (newSize > 300) {
-                return 30;
+                return 300;
             }
             return newSize;
         });
@@ -39,11 +40,11 @@ const About = () => {
                 </Button.Group>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <Col span={7} style={{ background: 'white' }}>
+                <Col style={{ background: 'white', width: '260px' }} className='QR-Code'>
                     <QRCode
                         errorLevel="H"
                         size={size}
-                        iconSize={size / 10}
+                        iconSize={size / 4}
                         value="https://free-game.vercel.app/"
                     // icon="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
                     />

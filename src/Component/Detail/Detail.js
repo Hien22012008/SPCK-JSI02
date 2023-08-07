@@ -92,9 +92,13 @@ const Detail = ({ match , addToCart }) => {
                             </Row>
                         </div>
                     </div>
-                    <div>
-                        <Button className='btn' style={{ width: '20%', paddingRight: '70%' }} onClick={() => addToCart(data)}>
+                    <div style={{paddingRight: '80%'}}>
+                        <Button className='btn' style={{ width: '100%', margin: '10px' }} onClick={() => addToCart(data)}>
                             ADD TO CART
+                        </Button>
+
+                        <Button className='btn' style={{ margin: '10px' }} onClick={() => addToCart(data)}>
+                            RENT THIS GAME WITH 0,05$ FOR 1 HOUR
                         </Button>
                     </div>
                 </Col>
